@@ -28,12 +28,15 @@ function addBook() {
 
 function showbooks() {
     ///The map() function iterates through the books array, creating a new array of HTML elements or strings based on the book information present in each array element.
-    const booksDiv = books.map((book, index) => `<h1>book Number: ${index + 1}</h1>
+    const booksDiv = books.map((book, index) => 
+        `<h1>book Number: ${index + 1}</h1>
         <p><strong>Book Name: </strong>${book.name}</p>
         <p><strong>Author Name:</strong> ${book.authorName}</p>
         <p><strong>Book Description:</strong> ${book.bookDescription}</p>
-        <p><strong>No. of Pages:</strong> ${book.pagesNumber} page(s)</p>`
+        <p><strong>No. of Pages:</strong> ${book.pagesNumber} page(s)</p>
+        <button onclick="deletebook(${index})">Delete</button>`
     );
+ 
     document.getElementById('books').innerHTML = booksDiv.join('');
     ///The join('') method is employed to concatenate all the HTML elements generated for each book into a single string. This string representation of HTML elements allows the content to be inserted as a single block of HTML.
 }
@@ -43,4 +46,9 @@ function clearInputs() {
     document.getElementById('authorName').value = '';
     document.getElementById('bookDescription').value = '';
     document.getElementById('pagesNumber').value = '';
+}
+
+function deletebook(index){
+    books.splice(index,1);
+    showbooks()
 }
